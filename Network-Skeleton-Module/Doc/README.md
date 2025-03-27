@@ -13,8 +13,8 @@ This Terraform module provisions a basic network skeleton on AWS. The primary go
 
 ## Requirements
 
-- **Terraform Version**: 5
-- **AWS Region**: `us-east-2` (adjustable)
+- **Terraform Version**: 5.0
+- **AWS Region**: `us-east-2` 
 - **AWS Provider Version**: Ensure the AWS provider is properly set for your version of Terraform.
 
 ## Providers
@@ -174,6 +174,20 @@ Option to create NAT gateway for each AZ.
 ## **Conclusion**
 
 This Terraform module simplifies setting up a scalable AWS network, including VPC, IGW, NAT Gateway, Route 53, Security Groups, and ALB. It offers customization, cost optimization, and high availability, making it ideal for building secure and efficient network architectures.
+
+
+# Resources Overview
+
+| **Resource Name**              | **Description**                                                                 | **AWS Documentation Link**                                                |
+|---------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| `aws_vpc`                      | Creates a Virtual Private Cloud (VPC) with specified CIDR block and DNS settings. | [AWS VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-vpc.html) |
+| `aws_subnet`                   | Creates a subnet within the VPC, either public or private, based on the configuration. | [AWS Subnet](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) |
+| `aws_nat_gateway`              | Creates a NAT Gateway to allow instances in a private subnet to access the internet. | [AWS NAT Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) |
+| `aws_internet_gateway`         | Creates and attaches an Internet Gateway to the VPC for outbound internet access. | [AWS Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) |
+| `aws_security_group`           | Creates a Security Group to define rules for network access (inbound and outbound). | [AWS Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) |
+| `aws_route53_zone`             | Creates a Route 53 Hosted Zone for DNS management (can be public or private). | [AWS Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html) |
+
+
 
 ## Authors
 
