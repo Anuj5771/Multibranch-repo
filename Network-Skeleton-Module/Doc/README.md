@@ -176,7 +176,7 @@ Option to create NAT gateway for each AZ.
 This Terraform module simplifies setting up a scalable AWS network, including VPC, IGW, NAT Gateway, Route 53, Security Groups, and ALB. It offers customization, cost optimization, and high availability, making it ideal for building secure and efficient network architectures.
 
 
-# Resources Overview
+## References
 
 | **Resource Name**              | **Description**                                                                 | **AWS Documentation Link**                                                |
 |---------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------|
