@@ -1,18 +1,29 @@
-# Network Skeleton Terraform Module
+# AWS Network Skeleton Terraform module
+
+
+This document outlines the version history and updates of the document created by Anuj Yadav.
+
+## Version History
+
+| **Version** | **Created on** | **Created by** | **Last updated by** | **Last edited on** | **Level** | **Reviewer** |
+|-------------|----------------|----------------|---------------------|--------------------|-----------|--------------|
+| **V2**      | 27-03-2025     | Anuj Yadav     | Anuj Yadav          |                    | L0        | Tarun        |
+| **V1**      | 27-03-2025     | Anuj Yadav     | Anuj Yadav          |                    | Internal  | Siddharth    |
+
 
 This Terraform module provisions a basic network skeleton on AWS. The primary goal of the module is to create a **VPC** along with other optional resources such as **Internet Gateway (IGW)**, **NAT Gateway**, **Route 53 DNS Zone**, **Security Groups**, and **ALB**. You can choose which resources to create based on the configuration of the module.
 
 ## Requirements
 
-- **Terraform Version**: 0.14.9
-- **AWS Region**: `ap-south-1` (adjustable)
+- **Terraform Version**: 5
+- **AWS Region**: `us-east-2` (adjustable)
 - **AWS Provider Version**: Ensure the AWS provider is properly set for your version of Terraform.
 
 ## Providers
 
 ```hcl
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 ```
 ## Resources Table
@@ -48,7 +59,7 @@ provider "aws" {
 | `alb_certificate_arn`                                   | string    | ARN of the ACM certificate to be used by the ALB. |
 | `enable_igw_publicRouteTable_PublicSubnets_resource`    | bool      | Flag to create an Internet Gateway, public route table, and public subnets (true/false). |
 | `enable_nat_privateRouteTable_PrivateSubnets_resource`  | bool      | Flag to create NAT Gateway, private route table, and private subnets (true/false). |
-| `enable_public_web_security_group_resource`            | bool      | Flag to create a web security group (true/false). |
+| `enable_public_web_security_group_resource`             | bool      | Flag to create a web security group (true/false). |
 | `enable_pub_alb_resource`                               | bool      | Flag to create an Application Load Balancer (true/false). |
 | `enable_aws_route53_zone_resource`                      | bool      | Flag to create a Route 53 hosted zone (true/false). |
 
@@ -56,13 +67,13 @@ provider "aws" {
 
 ```hcl
 provider "aws" {
-  region = "ap-south-1"
+  region = "us-east-2"
 }
 
 module "network_skeleton" {
   source                                               = "../"
   name                                                 = "network-skeleton"
-  cidr_block                                           = "173.31.0.0/20"
+  cidr_block                                           = "192.168.0.0/24	"
   enable_dns_hostnames                                 = true
   enable_vpc_logs                                      = false
   public_subnets_cidr                                  = ["pvt_subnet_cidr"]
@@ -85,7 +96,7 @@ Note: All the last 5 enable resource variables are set to false in the module. I
 
 For more details, you can refer to the example folder.
 
-### Tags
+## Tags
 Tags are assigned to resources using the name variable as the prefix. Additional tags can be assigned by using the tags variables, as defined in the module configuration.
 
 # VPC Configuration Inputs
@@ -111,16 +122,27 @@ This document describes the inputs used to configure the VPC, along with their d
 ## Description of Variables
 
 1. **`name`**: This is the name that will be used in tags for the VPC.
-2. **`cidr_block`**: The CIDR block defines the IP address range for the VPC. The default value is `10.0.0.0/24`, but it can be adjusted to fit your network configuration.
+
+2. **`cidr_block`**: The CIDR block defines the IP address range for the VPC. The default value is `192.168.0.0/24`, but it can be adjusted to fit your network configuration.
+
 3. **`instance_tenancy`**: This determines the tenancy of the instances launched in the VPC. The default value is `"default"`.
+  
 4. **`enable_dns_support`**: Specifies whether DNS support is enabled for instances launched into the VPC. The default is `"true"`.
+
 5. **`enable_dns_hostnames`**: Determines whether DNS hostnames are enabled for instances. Default is `"false"`.
+
 6. **`enable_classiclink`**: This option controls whether ClassicLink is enabled for instances. Default is `"false"`.
+
 7. **`enable_igw_publicRouteTable_PublicSubnets_resource`**: A Boolean that controls the creation of an Internet Gateway (IGW), Public Route Table, and Public Subnets. Default is `"True"`.
+
 8. **`enable_nat_privateRouteTable_PrivateSubnets_resource`**: A Boolean for the creation of a NAT, Private Route Table, and Private Subnets. Default is `"True"`.
+
 9. **`enable_public_web_security_group_resource`**: Used to create a Web Security Group. Default is `"True"`.
+
 10. **`enable_pub_alb_resource`**: Used to create an Application Load Balancer (ALB). Default is `"True"`.
+
 11. **`enable_aws_route53_zone_resource`**: Used to create a Route 53 Hosted Zone. Default is `"True"`.
+
 # AWS Resources Overview
 
 This document provides an overview of the important AWS resources.
@@ -139,7 +161,7 @@ This document provides an overview of the important AWS resources.
 | `alb_listener_arn`         | ARN of ALB listener                                   |
 | `alb_listener1_arn`        | ARN of ALB listener-1                                 |
 | `route53_name`             | Domain Name of Route 53 private hosted zone           |
-# Related Projects
+## Related Projects
 
 - `route-table`
 - `subnet`
@@ -147,3 +169,16 @@ This document provides an overview of the important AWS resources.
 - `security-groups`
 - `alb`
 
+## Additional Requirements
+Option to create NAT gateway for each AZ.
+
+## **Conclusion**
+
+This Terraform module simplifies setting up a scalable AWS network, including VPC, IGW, NAT Gateway, Route 53, Security Groups, and ALB. It offers customization, cost optimization, and high availability, making it ideal for building secure and efficient network architectures.
+
+## Authors
+
+### Contact
+| Name | Email Address | GitHub | URL |
+|------|--------------|--------|-----|
+| Anuj Yadav | anuj.yadav@mygurukulam.co | [anuj169](https://github.com/anuj169) | https://github.com/anuj169 |
