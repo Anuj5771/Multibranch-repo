@@ -162,7 +162,7 @@ This Terraform module simplifies setting up a scalable AWS network, including VP
 
 ## Authors
 
-### Contact
-| Name       | Email Address               | GitHub                                  | Website |
-|------------|----------------------------|-----------------------------------------|---------|
-| Anuj Yadav | anuj.yadav@mygurukulam.co  | [anuj169](https://github.com/anuj169)  | [Personal Website](#) |
+### Contact  
+| Name       | Email Address               | GitHub                                  |
+|------------|----------------------------|-----------------------------------------|
+| Anuj Yadav | [anuj.yadav@mygurukulam.co](mailto:anuj.yadav@mygurukulam.co)  | [anuj169](https://github.com/anuj169)  |
