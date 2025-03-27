@@ -1,7 +1,5 @@
 # AWS Network Skeleton Terraform module
-
-
-This document outlines the version history and updates of the document created by Anuj Yadav.
+![image](https://github.com/user-attachments/assets/591b84df-da8b-4766-b0e4-1e665676992f)
 
 ## Version History
 
@@ -45,7 +43,7 @@ provider "aws" {
 | `module "network_skeleton"`                             | Block     | The module that provisions the network resources. |
 | `source`                                                | string    | Path to the module directory (relative or absolute). |
 | `name`                                                  | string    | Name of the network skeleton, used for tagging and resource names. |
-| `cidr_block`                                            | string    | The CIDR block for the VPC. Example: `"173.31.0.0/20"`. |
+| `cidr_block`                                            | string    | The CIDR block for the VPC. Example: `"192.168.0.0/24"`. |
 | `enable_dns_hostnames`                                  | bool      | Enable DNS hostnames for instances launched in the VPC (true/false). |
 | `enable_vpc_logs`                                       | bool      | Flag to enable VPC Flow Logs (true/false). |
 | `public_subnets_cidr`                                   | list      | List of CIDR blocks for public subnets. |
@@ -99,7 +97,7 @@ For more details, you can refer to the example folder.
 ## Tags
 Tags are assigned to resources using the name variable as the prefix. Additional tags can be assigned by using the tags variables, as defined in the module configuration.
 
-# VPC Configuration Inputs
+## VPC Configuration Inputs
 
 This document describes the inputs used to configure the VPC, along with their descriptions, types, default values, and whether they are required.
 
@@ -107,16 +105,16 @@ This document describes the inputs used to configure the VPC, along with their d
 
 | **Input Name**                                      | **Description**                                                                 | **Type**   | **Default**                  | **Required** |
 |-----------------------------------------------------|---------------------------------------------------------------------------------|-----------|------------------------------|--------------|
-| `name`                                              | The string name appended in tags.                                                | `string`  | `"opstree"`                  | Yes          |
-| `cidr_block`                                        | The CIDR block for the VPC.                                                      | `string`  | `"10.0.0.0/24"`              | No           |
+| `name`                                              | The string name appended in tags.                                               | `string`  | `"ot_ms_vpc"`                  | Yes          |
+| `cidr_block`                                        | The CIDR block for the VPC.                                                     | `string`  | `"10.0.0.0/24"`              | No           |
 | `instance_tenancy`                                  | A tenancy option for instances launched into the VPC.                           | `string`  | `"default"`                  | No           |
 | `enable_dns_support`                                | A DNS support for instances launched into the VPC.                              | `boolean` | `"true"`                     | No           |
 | `enable_dns_hostnames`                              | A DNS hostname for instances launched into the VPC.                             | `boolean` | `"false"`                    | No           |
 | `enable_classiclink`                                | A DNS ClassicLink for instances launched into the VPC.                          | `boolean` | `"false"`                    | No           |
 | `enable_igw_publicRouteTable_PublicSubnets_resource`| Used to create an IGW, Public Route Table, and Public Subnets.                  | `boolean` | `"True"`                     | No           |
-| `enable_nat_privateRouteTable_PrivateSubnets_resource`| Used to create NAT, Private Route Table, and Private Subnets.                   | `boolean` | `"True"`                     | No           |
+| `enable_nat_privateRouteTable_PrivateSubnets_resource`| Used to create NAT, Private Route Table, and Private Subnets.                 | `boolean` | `"True"`                     | No           |
 | `enable_public_web_security_group_resource`        | Used to create a Web Security Group.                                             | `boolean` | `"True"`                     | No           |
-| `enable_pub_alb_resource`                          | Used to create an Application Load Balancer (ALB).                              | `boolean` | `"True"`                     | No           |
+| `enable_pub_alb_resource`                          | Used to create an Application Load Balancer (ALB).                               | `boolean` | `"True"`                     | No           |
 | `enable_aws_route53_zone_resource`                 | Used to create a Route 53 Hosted Zone.                                           | `boolean` | `"True"`                     | No           |
 
 ## Description of Variables
@@ -161,6 +159,7 @@ This document provides an overview of the important AWS resources.
 | `alb_listener_arn`         | ARN of ALB listener                                   |
 | `alb_listener1_arn`        | ARN of ALB listener-1                                 |
 | `route53_name`             | Domain Name of Route 53 private hosted zone           |
+
 ## Related Projects
 
 - `route-table`
